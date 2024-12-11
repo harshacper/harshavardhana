@@ -1,0 +1,222 @@
+1.Write a C Program to demonstrate how to use a pointer to access and modify the value of a variable.
+
+    #include<stdio.h>
+int main(){
+    int age=22;
+    int *ptr=&age;
+    printf("%d\n",age);
+    printf("%d\n",*ptr);
+    printf("%p\n",*ptr);
+    printf("%p\n",&age);
+    return 0;
+}
+   
+   
+2. 2.Write a C Program to swap two numbers using pointers.
+
+
+  #include <stdio.h>
+
+int main() {
+    int a, b, sum;
+    int *ptr1, *ptr2;  
+   
+    printf("Enter the first integer: ");
+    scanf("%d", &a);
+    
+    printf("Enter the second integer: ");
+    scanf("%d", &b);
+
+
+    ptr1 = &a;
+    ptr2 = &b;
+
+    
+    sum = *ptr1 + *ptr2;
+
+    
+    printf("The sum of %d and %d is %d\n", *ptr1, *ptr2, sum);
+
+    return 0;
+}
+
+
+
+   3.Write a C Program to find the largest element in an array using pointers.
+   
+   
+   #include<stdio.h>
+int main()
+{
+     int a,b;
+    printf("Enter the two number:");
+    scanf("%d%d",&a,&b);
+    a=a+b;
+    b=a-b;
+    a=a-b;
+    printf("a=%d,b=%d\n",a,b);
+
+    return 0;
+
+}
+
+
+  4.Write a C Program to reverse an array using pointers.
+  
+  
+  #include<stdio.h>
+int main()
+{
+   int n,a[n],ele;
+   printf("enter the umber of array:");
+   scanf("%d",a[n]);
+   printf("enter the element in array:");
+   scanf("%d",&ele);
+   for(int i=0;i<n;i++)
+   {
+    if(a[i]>n)
+    n=a[i];
+    printf("the max element in array is a %d",n);
+   }
+   printf("\n");
+  
+    return 0;
+}
+
+
+6.Write a C Program to calculate the sum and average of elements in an array
+
+
+
+    
+#include <stdio.h>
+int main() {
+    int n, i, sum = 0;
+    float average;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+    int arr[n]; 
+    printf("Enter %d integers:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    for(i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+    average = (float)sum / n;
+    printf("The sum of the elements is %d\n", sum);
+    printf("The average of the elements is %.2f\n", average);
+    
+    return 0;
+}
+
+
+
+
+
+
+7.Write a C Program to count the occurrence of a specific element in an array.
+
+
+
+ #include <stdio.h>
+
+int main() {
+    int n, i, target, count = 0;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+    int arr[n]; 
+    printf("Enter %d integers:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    printf("Enter the element to count its occurrences: ");
+    scanf("%d", &target);
+    for(i = 0; i < n; i++) {
+        if(arr[i] == target) {
+            count++;
+        }
+    }
+    printf("The element %d occurs %d times in the array.\n", target, count);
+    return 0;
+}
+
+
+
+  8.Write a C Program to find the smallest and largest elements in an array.
+  
+  #include <stdio.h>
+
+int main() {
+    int n, i, smallest, largest;
+    
+    
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+    
+    int arr[n]; 
+    
+    
+    printf("Enter %d integers:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    
+	
+	9.Write a C Program to find the length of a string without using the strlen() function.
+	
+	
+	 #include <stdio.h>
+
+int main() {
+    char str[100]; 
+    int i = 0, length = 0;
+    
+   
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    
+    while(str[i] != '\0') {
+        length++;
+        i++;
+    }
+    
+    
+    printf("The length of the string is %d\n", length);
+    
+    return 0;
+}
+
+
+ 10.Write a C Program to reverse a string without using library functions.
+ 
+ 
+   #include <stdio.h>
+
+int main() {
+    char str[100]; 
+    int i = 0, length = 0;
+    
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+   
+    while(str[length] != '\0') {
+        length++;
+    }
+    
+    
+    for(i = 0; i < length / 2; i++) {
+        char temp = str[i];
+        str[i] = str[length - i - 1];
+        str[length - i - 1] = temp;
+    }
+    
+    
+    printf("The reversed string is %s\n", str);
+    
+    return 0;
+}
