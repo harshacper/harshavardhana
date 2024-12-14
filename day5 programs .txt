@@ -1,0 +1,434 @@
+1.Write a C Program to create a function to reverse a string and use a loop in the main program to reverse multiple strings entered by the user.
+
+
+     #include <stdio.h>
+#include <string.h>
+
+#define MAX_LENGTH 100  
+
+
+void reverseString(char str[]) {
+    int len = strlen(str);
+    for (int i = 0; i < len / 2; i++) {
+        char temp = str[i];
+        str[i] = str[len - i - 1];
+        str[len - i - 1] = temp;
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of strings you want to reverse: ");
+    scanf("%d", &n);
+
+    char str[MAX_LENGTH]; 
+    getchar(); 
+
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter string %d: ", i + 1);
+        fgets(str, MAX_LENGTH, stdin);
+
+        
+        size_t len = strlen(str);
+        if (len > 0 && str[len - 1] == '\n') {
+            str[len - 1] = '\0';
+        }
+
+        reverseString(str);
+
+        printf("Reversed string %d: %s\n", i + 1, str);
+    }
+
+    return 0;
+
+
+
+ 2.Write a C Program to create a function to find the largest and smallest elements in an array, and use it in the main program to handle multiple arrays entered by the user.
+ 
+ 
+    #include <stdio.h>
+
+// Function to find the largest and smallest elements in an array
+void findLargestAndSmallest(int arr[], int size, int *largest, int *smallest) {
+    *largest = arr[0];
+    *smallest = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > *largest) {
+            *largest = arr[i];
+        }
+        if (arr[i] < *smallest) {
+            *smallest = arr[i];
+        }
+    }
+}
+
+int main() {
+    int n, size;
+    
+    printf("Enter the number of arrays you want to process: ");
+    scanf("%d", &n);
+    
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter the size of array %d: ", i + 1);
+        scanf("%d", &size);
+        
+        int arr[size];
+        printf("Enter %d elements for array %d: ", size, i + 1);
+        for (int j = 0; j < size; j++) {
+            scanf("%d", &arr[j]);
+        }
+        
+        int largest, smallest;
+        findLargestAndSmallest(arr, size, &largest, &smallest);
+        
+        printf("For array %d, Largest: %d, Smallest: %d\n", i + 1, largest, smallest);
+    }
+    
+    return 0;
+}
+
+
+3.Write a C Program to create a function to check if a string is a palindrome, and use a loop in the main program to check multiple strings entered by the user.
+
+
+
+   #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+
+bool isPalindrome(char str[]) {
+    int len = strlen(str);
+    for (int i = 0; i < len / 2; i++) {
+        if (str[i] != str[len - i - 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int n;
+    printf("Enter the number of strings you want to check: ");
+    scanf("%d", &n);
+
+    char str[100]; 
+    getchar(); 
+
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter string %d: ", i + 1);
+        fgets(str, 100, stdin);
+
+        
+        size_t len = strlen(str);
+        if (len > 0 && str[len - 1] == '\n') {
+            str[len - 1] = '\0';
+        }
+
+        if (isPalindrome(str)) {
+            printf("String %d is a palindrome.\n", i + 1);
+        } else {
+            printf("String %d is not a palindrome.\n", i + 1);
+        }
+    }
+
+    return 0;
+}
+
+
+4. Write a C Program to create a function to concatenate two strings, and use it to merge a list of strings entered by the user into a single string using a loop.
+
+
+
+  #include <stdio.h>
+#include <string.h>
+
+#define MAX_LENGTH 1000  // Maximum length of the concatenated string
+
+// Function to concatenate two strings
+void concatenateStrings(char destination[], const char source[]) {
+    strcat(destination, source);
+}
+
+int main() {
+    int n;
+    printf("Enter the number of strings you want to concatenate: ");
+    scanf("%d", &n);
+
+    char result[MAX_LENGTH] = ""; 
+    char str[100];
+   
+    getchar(); 
+
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter string %d: ", i + 1);
+        fgets(str, 100, stdin);
+
+        
+        size_t len = strlen(str);
+        if (len > 0 && str[len - 1] == '\n') {
+            str[len - 1] = '\0';
+        }
+
+        concatenateStrings(result, str);
+    }
+
+    printf("\nThe concatenated result is: %s\n", result);
+
+    return 0;  
+	}
+	
+	
+5. #include <stdio.h>
+#include <string.h>
+
+// Function to concatenate two strings
+void concatenateStrings(char destination[], char source[]) {
+    int destLen = strlen(destination);
+    int i = 0;
+
+    while (source[i] != '\0') {
+        destination[destLen + i] = source[i];
+        i++;
+    }
+    destination[destLen + i] = '\0'; // Null-terminate the concatenated string
+}
+
+int main() {
+    int n;
+    printf("Enter the number of strings: ");
+    scanf("%d", &n);
+
+    // Clear the newline left by scanf
+    getchar();
+
+    char result[1000] = ""; // Initialize the result string
+    char str[100];
+
+    for (int i = 0; i < n; i++) {
+        printf("Enter string %d: ", i + 1);
+        fgets(str, sizeof(str), stdin);
+
+        // Remove newline character from the string
+        str[strcspn(str, "\n")] = '\0';
+
+        concatenateStrings(result, str); // Concatenate the current string to the result
+
+        // Optionally, add a space or separator between strings
+        if (i < n - 1) {
+            concatenateStrings(result, " ");
+        }
+    }
+
+    printf("\nConcatenated string: \"%s\"\n", result);
+
+    return 0;
+} 
+
+
+
+ 6. 
+  
+  #include <stdio.h>
+
+// Function to calculate the sum of an array
+int calculateSum(int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+int main() {
+    int numArrays, size;
+
+    printf("Enter the number of arrays: ");
+    scanf("%d", &numArrays);
+
+    for (int i = 0; i < numArrays; i++) {
+        printf("\nEnter the size of array %d: ", i + 1);
+        scanf("%d", &size);
+
+        int arr[size];
+        printf("Enter %d elements for array %d: ", size, i + 1);
+        for (int j = 0; j < size; j++) {
+            scanf("%d", &arr[j]);
+        }
+
+        int sum = calculateSum(arr, size);
+        printf("The sum of elements in array %d is: %d\n", i + 1, sum);
+    }
+
+    return 0;
+}
+
+
+7...
+#include <stdio.h>
+
+// Function to check if an array is sorted
+int isSorted(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            return 0; // Array is not sorted
+        }
+    }
+    return 1; // Array is sorted
+}
+
+int main() {
+    int numArrays, size;
+
+    printf("Enter the number of arrays: ");
+    scanf("%d", &numArrays);
+
+    for (int i = 0; i < numArrays; i++) {
+        printf("\nEnter the size of array %d: ", i + 1);
+        scanf("%d", &size);
+
+        int arr[size];
+        printf("Enter %d elements for array %d: ", size, i + 1);
+        for (int j = 0; j < size; j++) {
+            scanf("%d", &arr[j]);
+        }
+
+        if (isSorted(arr, size)) {
+            printf("Array %d is sorted.\n", i + 1);
+        } else {
+            printf("Array %d is not sorted.\n", i + 1);
+        }
+    }
+
+    return 0;
+}
+
+8..
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Function to count the vowels in a string
+int countVowels(char str[]) {
+    int count = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]);
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int n;
+    printf("Enter the number of strings: ");
+    scanf("%d", &n);
+
+    // Clear the newline left by scanf
+    getchar();
+
+    char str[100];
+
+    for (int i = 0; i < n; i++) {
+        printf("Enter string %d: ", i + 1);
+        fgets(str, sizeof(str), stdin);
+
+        // Remove newline character from the string
+        str[strcspn(str, "\n")] = '\0';
+
+        int vowelCount = countVowels(str);
+        printf("String %d: \"%s\" has %d vowel(s).\n", i + 1, str, vowelCount);
+    }
+
+    return 0;
+}
+
+
+9.
+#include <stdio.h>
+
+// Function to sort an array in ascending order
+void sortArray(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap elements
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int numArrays, size;
+
+    printf("Enter the number of arrays: ");
+    scanf("%d", &numArrays);
+
+    for (int i = 0; i < numArrays; i++) {
+        printf("\nEnter the size of array %d: ", i + 1);
+        scanf("%d", &size);
+
+        int arr[size];
+        printf("Enter %d elements for array %d: ", size, i + 1);
+        for (int j = 0; j < size; j++) {
+            scanf("%d", &arr[j]);
+        }
+
+        sortArray(arr, size);
+
+        printf("Sorted array %d: ", i + 1);
+        for (int j = 0; j < size; j++) {
+            printf("%d ", arr[j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+10...
+#include <stdio.h>
+#include <string.h>
+
+// Function to find the length of the longest string in an array of strings
+int findMaxLength(char strings[][100], int n) {
+    int maxLength = 0;
+    for (int i = 0; i < n; i++) {
+        int length = strlen(strings[i]);
+        if (length > maxLength) {
+            maxLength = length;
+        }
+    }
+    return maxLength;
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of strings: ");
+    scanf("%d", &n);
+
+    // Clear the newline left by scanf
+    getchar();
+
+    char strings[n][100];
+    
+    // Read strings from the user
+    for (int i = 0; i < n; i++) {
+        printf("Enter string %d: ", i + 1);
+        fgets(strings[i], sizeof(strings[i]), stdin);
+
+        // Remove newline character from the string
+        strings[i][strcspn(strings[i], "\n")] = '\0';
+    }
+
+    // Find the maximum length among the strings
+    int maxLength = findMaxLength(strings, n);
+    printf("\nThe maximum length among the entered strings is: %d\n", maxLength);
+
+    return 0;
+}
