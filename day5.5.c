@@ -11,12 +11,7 @@ int sum_avg()
     printf("Sum=%d",sum);
     printf("Average=%d",avg);
 }
-    
-    
-    
-    
-    
-    int main()
+     int main()
 {
     int n,sum=0,avg;
     printf("Enter the size of array");
@@ -30,9 +25,5 @@ int sum_avg()
 
     }
     sum_avg();
-   
-    
     return 0;
-
-   
 }
